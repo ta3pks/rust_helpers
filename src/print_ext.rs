@@ -2,23 +2,23 @@ use std::fmt::Display;
 
 pub trait DisplayExt: Display + Sized {
     /// println!("{msg}: {self}");
-    fn println(self, msg: &'static str) -> Self {
+    fn println(self, msg: impl Display) -> Self {
         println!("{msg}: {self}");
         self
     }
     /// eprintln!("{msg}: {self}");
-    fn eprintln(self, msg: &'static str) -> Self {
+    fn eprintln(self, msg: impl Display) -> Self {
         eprintln!("{msg}: {self}");
         self
     }
     /// println!("{msg}: {self}"); only in debug builds
-    fn println_dbg(self, msg: &'static str) -> Self {
+    fn println_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         println!("{msg}: {self}");
         self
     }
     /// eprintln!("{msg}: {self}"); only in debug builds
-    fn eprintln_dbg(self, msg: &'static str) -> Self {
+    fn eprintln_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         eprintln!("{msg}: {self}");
         self
@@ -29,49 +29,49 @@ impl<T: Display + Sized> DisplayExt for T {}
 
 pub trait DebugExt: std::fmt::Debug + Sized {
     /// pritnln!("{msg}: {self:?}");
-    fn dprintln(self, msg: &'static str) -> Self {
+    fn dprintln(self, msg: impl Display) -> Self {
         println!("{msg}: {self:?}");
         self
     }
     /// eprintln!("{msg}: {self:?}");
-    fn deprintln(self, msg: &'static str) -> Self {
+    fn deprintln(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         eprintln!("{msg}: {self:?}");
         self
     }
     /// println!("{msg}: {self:?}"); only in debug builds
-    fn dprintln_dbg(self, msg: &'static str) -> Self {
+    fn dprintln_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         println!("{msg}: {self:?}");
         self
     }
     /// eprintln!("{msg}: {self:?}"); only in debug builds
-    fn deprintln_dbg(self, msg: &'static str) -> Self {
+    fn deprintln_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         eprintln!("{msg}: {self:?}");
         self
     }
 
     /// println!("{msg}: {self:#?}"); pretty println
-    fn dpprintln(self, msg: &'static str) -> Self {
+    fn dpprintln(self, msg: impl Display) -> Self {
         println!("{msg}: {self:#?}");
         self
     }
     /// eprintln!("{msg}: {self:#?}"); pretty eprintln
-    fn depprintln(self, msg: &'static str) -> Self {
+    fn depprintln(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         eprintln!("{msg}: {self:#?}");
         self
     }
 
     /// println!("{msg}: {self:#?}"); pretty println only in debug builds
-    fn dpprintln_dbg(self, msg: &'static str) -> Self {
+    fn dpprintln_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         println!("{msg}: {self:#?}");
         self
     }
     /// eprintln!("{msg}: {self:#?}"); pretty eprintln only in debug builds
-    fn depprintln_dbg(self, msg: &'static str) -> Self {
+    fn depprintln_dbg(self, msg: impl Display) -> Self {
         #[cfg(debug_assertions)]
         eprintln!("{msg}: {self:#?}");
         self
