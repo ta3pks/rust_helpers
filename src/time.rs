@@ -45,7 +45,18 @@ impl SleepAsyncExt for std::time::Duration {
         Box::pin(tokio::time::sleep(*self))
     }
 }
-
+pub trait DurationToUnix {
+    fn to_past_unix_secs(&self) -> u64;
+    fn to_future_unix_secs(&self) -> u64;
+}
+impl DurationToUnix for std::time::Duration {
+    fn to_past_unix_secs(&self) -> u64 {
+        (now() - *self).unix_secs()
+    }
+    fn to_future_unix_secs(&self) -> u64 {
+        (now() + *self).unix_secs()
+    }
+}
 pub trait TimeExt {
     fn unix_secs(&self) -> u64;
     fn unix_millis(&self) -> u64;
