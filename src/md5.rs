@@ -1,4 +1,6 @@
-use crate::{Base64EncodeExt, HexEncodeExt};
+#[cfg(feature = "base64")]
+use crate::Base64EncodeExt;
+use crate::HexEncodeExt;
 
 pub trait MD5Ext {
     fn md5(&self) -> [u8; 16];
