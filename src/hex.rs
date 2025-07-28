@@ -15,7 +15,7 @@ where
     fn hex_lower(&self) -> String {
         self.as_ref()
             .iter()
-            .map(|b| format!("{:02x}", b))
+            .map(|b| format!("{b:02x}"))
             .collect::<Vec<_>>()
             .join("")
     }

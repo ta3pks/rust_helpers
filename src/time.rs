@@ -112,7 +112,7 @@ impl HMS for std::time::Duration {
         let hours = secs / 3600;
         let minutes = (secs % 3600) / 60;
         let seconds = secs % 60;
-        format!("{:02}:{:02}:{:02}", hours, minutes, seconds)
+        format!("{hours:02}:{minutes:02}:{seconds:02}")
     }
     fn hmsxxx(&self) -> String {
         let secs = self.as_secs();
@@ -120,7 +120,7 @@ impl HMS for std::time::Duration {
         let minutes = (secs % 3600) / 60;
         let seconds = secs % 60;
         let millis = self.subsec_millis();
-        format!("{:02}:{:02}:{:02}.{:03}", hours, minutes, seconds, millis)
+        format!("{hours:02}:{minutes:02}:{seconds:02}.{millis:03}")
     }
 }
 pub fn now() -> SystemTime {

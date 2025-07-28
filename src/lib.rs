@@ -29,3 +29,5 @@ mod std_sync_ext;
 pub use std_sync_ext::*;
 mod print_ext;
 pub use print_ext::*;
+#[macro_use]
+pub mod bitflags;
